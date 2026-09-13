@@ -1,0 +1,4 @@
+protected/backend/node_modules/
+protected/backend/.env
+*.log
+.DS_Store

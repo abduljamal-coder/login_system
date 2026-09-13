@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Welcome</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background-color: #f4f4f4;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+            width: 100vw;
+
+        }
+        .welcome-container {
+
+            background-color: #1cf55d;
+
+            padding: 20px;
+
+            border-radius: 5px;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            text-align: center;
+
+            width: 300px;
+            height: 300px;
+
+        }
+button {
+
+            padding: 10px;
+
+            background-color: #28a745;
+
+            color: #fff;
+
+            border: none;
+
+            border-radius: 3px;
+
+            cursor: pointer;
+
+        }
+        button:hover {
+            
+            background-color: #218838;
+
+        }
+        </style>
+
+</head>
+
+<body>
+
+
+    <div class="welcome-container">
+
+        <h1 id="welcomeMessage">
+            Welcome
+        </h1>
+
+
+        <p id="email"></p>
+
+
+        <p class="welcome-text">
+            You have successfully logged into your account.
+        </p>
+
+
+        <button id="logoutButton">
+            Logout
+        </button>
+
+    </div>
+
+
+    <script>
+
+        const apiBaseUrl = "http://127.0.0.1:3003";
+
+        const welcomeMessage =
+            document.getElementById(
+                "welcomeMessage"
+            );
+
+        const emailElement =
+            document.getElementById(
+                "email"
+            );
+
+        const logoutButton =
+            document.getElementById(
+                "logoutButton"
+            );
+
+
+        async function loadUser() {
+
+            try {
+
+                const response =
+                    await fetch(`${apiBaseUrl}/api/me`, {
+                        credentials: "include"
+                    });
+
+
+                if (!response.ok) {
+
+                    window.location.href =
+                        `${apiBaseUrl}/login.html`;
+
+                    return;
+
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                welcomeMessage.textContent =
+                    `Welcome, ${data.user.name}!`;
+
+
+                emailElement.textContent =
+                    data.user.email;
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                window.location.href =
+                    `${apiBaseUrl}/login.html`;
+
+            }
+
+        }
+
+
+        logoutButton.addEventListener(
+            "click",
+            async function () {
+
+                await fetch(
+                    `${apiBaseUrl}/api/logout`,
+                    {
+                        method: "POST",
+                        credentials: "include"
+                    }
+                );
+
+
+                window.location.href =
+                    `${apiBaseUrl}/login.html`;
+
+            }
+        );
+
+
+        loadUser();
+
+    </script>
+
+</body>
+
+</html>
