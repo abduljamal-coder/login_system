@@ -4,7 +4,7 @@ const loginForm =
 const message =
     document.getElementById("message");
 
-const apiBaseUrl = "http://127.0.0.1:3003";
+const apiBaseUrl = "http://127.0.0.1:3000";
 
 
 loginForm.addEventListener(
