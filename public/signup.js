@@ -4,7 +4,11 @@ const signupForm =
 const message =
     document.getElementById("message");
 
-const apiBaseUrl = "http://127.0.0.1:3000";
+const apiBaseUrl =
+    (window.location.hostname === "127.0.0.1" ||
+     window.location.hostname === "localhost")
+        ? "http://127.0.0.1:3000"
+        : "";
 
 
 signupForm.addEventListener(
