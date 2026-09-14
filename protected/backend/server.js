@@ -8,9 +8,13 @@ require("dotenv").config({
 });
 
 const app = express();
+app.set("trust proxy", 1); 
+
 
 const PORT = process.env.PORT || 3000;
 const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "http://127.0.0.1:5500";
+
+
 
 
 // ===============================
@@ -43,8 +47,9 @@ app.use(
 
         cookie: {
             httpOnly: true,
-            secure: false,
-            maxAge: 1000 * 60 * 60
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 1000 * 60 * 60 
+        
         }
     })
 );
