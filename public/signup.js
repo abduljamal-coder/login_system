@@ -4,10 +4,14 @@ const signupForm =
 const message =
     document.getElementById("message");
 
+const isLocalFrontend =
+    window.location.protocol === "file:" ||
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1";
+
 const apiBaseUrl =
-    (window.location.hostname === "127.0.0.1" ||
-     window.location.hostname === "localhost")
-        ? "http://127.0.0.1:3000"
+    isLocalFrontend
+        ? "http://127.0.0.1:3003"
         : "";
 
 
