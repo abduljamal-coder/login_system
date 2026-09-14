@@ -45,6 +45,17 @@
         button:hover {
             background-color: #218838;
         }
+        .switch-page {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .switch-page a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .switch-page a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -57,6 +68,7 @@
             <input type="password" id="confirmpassword" placeholder="Confirm Password" required>
             <button type="submit">Sign Up</button>
         </form>
+        <p class="switch-page">Already have an account? <a href="login.html">Login</a></p>
         <p id="message" style="color:red;"></p>
     </div>
     <script src="signup.js" ></script>
